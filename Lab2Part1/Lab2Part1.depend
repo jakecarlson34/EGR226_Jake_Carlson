@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1611789686 source:w:\egr226\lab2part1\main.c
+	<stdio.h>
+	<stdlib.h>
+
