@@ -11,10 +11,12 @@
 * resistors color-bands.
 *
 **************************************************************************************/
-
+void getColorBands(char*, char*, char*, char*);
+void calcResistance(char, char, char, char);
 void prompt(void);//Declaring functions
 int calcResistorColors(int x);
 int getIntBetween ();
+int getinput();
 
 int main(){
 
@@ -29,24 +31,37 @@ int enteredVal;
 
     void prompt(void){ //printf statements for prompt
 
- printf("---------------Resistor Codes---------------\n");
- printf("|Character| Color  | Band 1 & 2 |  Band 3   |\n");
- printf("|    K    | Black  |      0     |*1         |\n");
- printf("|    N    | Brown  |      1     |*10        |\n");
- printf("|    R    | Red    |      2     |*100       |\n");
- printf("|    O    | Orange |      3     |*1,000     |\n");
- printf("|    Y    | Yellow |      4     |*10,000    |\n");
- printf("|    G    | Green  |      5     |*100,000   |\n");
- printf("|    B    | Blue   |      6     |*1,000,000 |\n");
- printf("|    V    | Violet |      7     |*10,000,000|\n");
- printf("|    E    | Grey   |      8     |           |\n");
- printf("|    W    | White  |      9     |           |\n");
- printf("|    D    | Gold   |            |           |\n");
- printf("|    S    | Silver |            |           |\n");
- printf("---------------------------------------------\n\n");
- printf("Choose a resistance value to have decoded into it's color-bands.\n");
+ printf("---------------Resistor Codes-----------------------------\n");
+ printf("|Character| Color  | Band 1 & 2 |  Band 3   |  Tolerance  |\n");
+ printf("|    K    | Black  |      0     |*1         |             |\n");
+ printf("|    N    | Brown  |      1     |*10        | +/-1%%       |\n");
+ printf("|    R    | Red    |      2     |*100       | +/-2%%       |\n");
+ printf("|    O    | Orange |      3     |*1,000     |             |\n");
+ printf("|    Y    | Yellow |      4     |*10,000    |             |\n");
+ printf("|    G    | Green  |      5     |*100,000   | +/-0.5%%     |\n");
+ printf("|    B    | Blue   |      6     |*1,000,000 | +/-0.25%%    |\n");
+ printf("|    V    | Violet |      7     |*10,000,000| +/-0.1%%     |\n");
+ printf("|    E    | Grey   |      8     |           | +/-0.05%%    |\n");
+ printf("|    W    | White  |      9     |           |             |\n");
+ printf("|    D    | Gold   |            |   *0.1    | +/-5%%       |\n");
+ printf("|    S    | Silver |            |   *0.01   | +/-10%%      |\n");
+ printf("----------------------------------------------------------\n\n");
+ printf("Choose which resistor function you would like to perform:\n");
+ printf("\t(1): Determine color-code for given resistance value\n");
+ printf("\t(2): Determine resistance value from given color-code\n");
 }
+int getinput()
 
+
+void getColorBands(char*, char*, char*, char*){
+    char color[10][1] = {"K",  "N", "R", "O", "Y", "G", "B", "V", "E", "W", "D", "S"};
+    char *b1, *b2, *b3, *b4;
+
+    scanf("%c%c%c%c", b1, b2, b3, b4)//to print use printf("%c", *b1)
+
+}
+void calcResistance(char, char, char, char){
+}
 
 int getIntBetween (int val){
 
