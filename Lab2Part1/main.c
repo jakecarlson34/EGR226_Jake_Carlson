@@ -4,11 +4,11 @@
 /**************************************************************************************
 * Author: Jake Carlson
 * Course: EGR 226 - 902
-* Date: 01/20/2021
-* Project: lab01part1
+* Date: 02/1/2021
+* Project: lab21part1
 * File: main.c
 * Description: This program takes an input from the user in ohms and solves to find the
-* resistors color-bands.
+* resistors color-bands or takes color-bands and converts to resistance.
 *
 **************************************************************************************/
 void getColorBands(char*, char*, char*, char*);
