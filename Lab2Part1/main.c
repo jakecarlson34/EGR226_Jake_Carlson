@@ -21,15 +21,47 @@ int getinput();
 int main(){
 
 int enteredVal;
+int userChoice;
+int goodEnter = 0;
+char c1, c2, c3, c4;
 
-  prompt();
-  enteredVal = getIntBetween(); //function calls
-  calcResistorColors(enteredVal);
+
+prompt();
+do{
+    printf("Please enter a 1 to convert a resistance value to a color code.\n");
+    printf("Please enter a 2 to convert a color code to a resistance value.\n");
+    scanf("%d", &userChoice);
+
+    if(userChoice == 1){
+        enteredVal = getIntBetween(); //function calls
+        calcResistorColors(enteredVal);
+        goodEnter = 1;
+    }
+    else if(userChoice == 2){
+    printf("Enter A Character for band 1:");
+    scanf(" %c", &c1);
+    printf("\nEnter A Character for band 2:");
+    scanf(" %c", &c2);
+    printf("\nEnter A Character for band 3:");
+    scanf(" %c", &c3);
+    printf("\nEnter A Character for band 4:");
+    scanf(" %c", &c4);
+
+        getColorBands(c1, c2, c3, c4);
+        calcResistance(c1, c2, c3, c4);
+        goodEnter = 1;
+    }
+
+    else{
+        printf("Error\n");
+        goodEnter = 0;
+    }
+} while(goodEnter != 1);
 
  return (0);}
 
 
-    void prompt(void){ //printf statements for prompt
+void prompt(void){ //printf statements for prompt
 
  printf("---------------Resistor Codes-----------------------------\n");
  printf("|Character| Color  | Band 1 & 2 |  Band 3   |  Tolerance  |\n");
@@ -46,28 +78,14 @@ int enteredVal;
  printf("|    D    | Gold   |            |   *0.1    | +/-5%%       |\n");
  printf("|    S    | Silver |            |   *0.01   | +/-10%%      |\n");
  printf("----------------------------------------------------------\n\n");
- printf("Choose which resistor function you would like to perform:\n");
- printf("\t(1): Determine color-code for given resistance value\n");
- printf("\t(2): Determine resistance value from given color-code\n");
-}
-int getinput()
-
-
-void getColorBands(char*, char*, char*, char*){
-    char color[10][1] = {"K",  "N", "R", "O", "Y", "G", "B", "V", "E", "W", "D", "S"};
-    char *b1, *b2, *b3, *b4;
-
-    scanf("%c%c%c%c", b1, b2, b3, b4)//to print use printf("%c", *b1)
 
 }
-void calcResistance(char, char, char, char){
-}
-
 int getIntBetween (int val){
 
-val = 0; //Value entered
-char wrong[100]; //storage for error when using alphabet
-int pro, i=0;
+    printf("Please enter a value from 1 to 99M ohms\n");
+    val = 0; //Value entered
+    char wrong[100]; //storage for error when using alphabet
+    int pro, i=0;
 
 while(i == 0){ //while loop to make sure value is between 1 and 99
 
@@ -103,9 +121,6 @@ int calcResistorColors(int enteredVal){
 
 
  printf("A resistor of %d Ohms would have a color code of: ", enteredVal);
-
-
-
 
         do{
             enteredVal = enteredVal/10;
@@ -143,7 +158,158 @@ int calcResistorColors(int enteredVal){
 printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
 
 
-
-
  return (enteredVal);}
+
+ void getColorBands(char* c1, char* c2, char* c3, char* c4){
+   char color[4] = {c1, c2, c3, c4};
+
+   printf("Resistor color code entered: %c, %c, %c, %c\n", c1, c2, c3, c4);
+
+   return (0);
+ }
+
+ void calcResistance(char c1, char c2, char c3, char c4){
+
+
+    int b1, b2, b3, total;
+    double b4;
+
+//band 1
+    if(c1 == 'K'){
+        b1 = 0;
+    }
+    else if(c1 == 'N'){
+        b1 = 10;
+    }
+    else if(c1 == 'R'){
+        b1 = 20;
+    }
+    else if(c1 == 'O'){
+        b1 = 30;
+    }
+    else if(c1 == 'Y'){
+        b1 = 40;
+    }
+    else if(c1 == 'G'){
+        b1 = 50;
+    }
+    else if(c1 == 'B'){
+        b1 = 60;
+    }
+    else if(c1 == 'V'){
+        b1 = 70;
+    }
+    else if(c1 == 'E'){
+        b1 = 80;
+    }
+    else {
+        b1 = 90;
+    }
+
+//band 2
+
+    if(c2 == 'K'){
+        b2 = 0;
+    }
+    else if(c2 == 'N'){
+        b2 = 1;
+    }
+    else if(c2 == 'R'){
+        b2 = 2;
+    }
+    else if(c2 == 'O'){
+        b2 = 3;
+    }
+    else if(c2 == 'Y'){
+        b2 = 4;
+    }
+    else if(c2 == 'G'){
+        b2 = 5;
+    }
+    else if(c2 == 'B'){
+        b2 = 6;
+    }
+    else if(c2 == 'V'){
+        b2 = 7;
+    }
+    else if(c2 == 'E'){
+        b2 = 8;
+    }
+    else {
+        b2 = 9;
+    }
+
+//band 3
+
+     if(c3 == 'K'){
+        b3 = 1;
+    }
+    else if(c3 == 'N'){
+        b3 = 10;
+    }
+    else if(c3 == 'R'){
+        b3 = 100;
+    }
+    else if(c3 == 'O'){
+        b3 = 1000;
+    }
+    else if(c3 == 'Y'){
+        b3 = 10000;
+    }
+    else if(c3 == 'G'){
+        b3 = 100000;
+    }
+    else if(c3 == 'B'){
+        b3 = 1000000;
+    }
+    else if(c3 == 'V'){
+        b3 = 10000000;
+    }
+    else if(c3 == 'D'){
+        b3 = 0.1;
+    }
+    else if(c3 == 'S'){
+        b3 = 0.01;
+    }
+
+    else {
+        b3 = 0;
+    }
+
+    //band 4
+    if(c4 == 'K'){
+        b4 = 1;
+    }
+    else if(c4 == 'N'){
+        b4 = 2;
+    }
+    else if (c4 == 'G'){
+        b4 = 0.5;
+    }
+    else if(c4 == 'B'){
+        b4 = 0.25;
+    }
+    else if(c4 == 'V'){
+        b4 = 0.1;
+    }
+    else if(c4 == 'E'){
+        b4= 0.05;
+    }
+    else if(c4 == 'D'){
+        b4 = 5;
+    }
+    else if(c4 == 's'){
+        b4 = 10;
+    }
+    else {
+        b4 = 0;
+    }
+
+    total = ((b1+b2)*b3);
+
+    printf("This resistor is [%d]Ohms with a +/-%g%% tolerance", total, b4);
+
+
+return (0);
+}
 
