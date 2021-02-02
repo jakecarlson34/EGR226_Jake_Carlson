@@ -20,7 +20,7 @@ typedef struct{
     int pages;
     int year_published;
 }book;
-int parse_file(char, book);
+int parse_file(char name, book my_book_array[]);
 void print_book();
 void search_title();
 void search_author();
@@ -31,7 +31,7 @@ int main()
 {
     book my_book_array[360];
     int user, loop;
-    int low = 0, high = 2, checkVal = 1;
+    int k, j, low = 0, high = 2, checkVal = 1;
     char name[12] = "BookList.csv";
 
 
@@ -58,7 +58,17 @@ int main()
     fflush(stdin);
   //  printf("%d", user);
 
-  pars_file(name, my_book_array);
+  parse_file(name, my_book_array);
+
+  if(user == 0){
+    search_title(my_book_array);
+  }
+  else if(user == 1){
+    search_author(my_book_array);
+  }
+  else{
+    search_ISBN(my_book_array);
+  }
 
     return 0;
 }
@@ -67,5 +77,46 @@ int parse_file(char name, book my_book_array[]){
     int i = 0;
     char chec[550];
 
+    FILE* myFile = fopen(name, "r");
+    if (myFile == NULL){
+        return 0;
+    }
 
+    while(fgets(chec, 550, myFile)){
+
+        char* point;
+        point = strtok(chec, ",");
+
+        if(strcmp(point, "N/A")){
+            strcpy(my_book_array[i].title, point);
+        }
+        point = strtok(NULL, "\n");
+        if(strcmp(point, "N/A")){
+            strcpy(my_book_array[i].author_name, point);
+        }
+        point = strtok(NULL, "\n");
+        if(strcmp(point, "N/A")){
+            strcpy(my_book_array[i].ISBN, point);
+        }
+        else {
+            strcpy(my_book_array[i].ISBN, "N/A");
+        }
+        point = strtok(NULL, ",\n");
+        if (strcmp(point, "N/A")){
+            my_book_array[i].pages = atoi(point);
+        }
+        else {
+            my_book_array[i].pages = -1;
+        }
+        point = strtok(NULL, "\n");
+        if(strcmp(point, "N/A")){
+            my_book_array[i].year_published = atoi(point);
+        }
+        else {
+            my_book_array[i].year_published = -1;
+        }
+        i++;
+    }
+    fclose(myFile);
+    return (1);
 }
