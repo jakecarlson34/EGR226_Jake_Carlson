@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 /**************************************************************************************
 * Author: Jake Carlson
 * Course: EGR 226 - 902
@@ -11,6 +8,11 @@
 * resistors color-bands or takes color-bands and converts to resistance.
 *
 **************************************************************************************/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
 void getColorBands(char*, char*, char*, char*);
 void calcResistance(char, char, char, char);
 void prompt(void);//Declaring function protoypes
@@ -65,9 +67,9 @@ void prompt(void){ //printf statements for prompt
 
  printf("---------------Resistor Codes-----------------------------\n");
  printf("|Character| Color  | Band 1 & 2 |  Band 3   |  Tolerance  |\n");
- printf("|    K    | Black  |      0     |*1         |             |\n");
- printf("|    N    | Brown  |      1     |*10        | +/-1%%       |\n");
- printf("|    R    | Red    |      2     |*100       | +/-2%%       |\n");
+ printf("|    K    | Black  |      0     |*1         | +/-1%%       |\n");
+ printf("|    N    | Brown  |      1     |*10        | +/-2%%       |\n");
+ printf("|    R    | Red    |      2     |*100       |             |\n");
  printf("|    O    | Orange |      3     |*1,000     |             |\n");
  printf("|    Y    | Yellow |      4     |*10,000    |             |\n");
  printf("|    G    | Green  |      5     |*100,000   | +/-0.5%%     |\n");
