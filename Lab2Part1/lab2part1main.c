@@ -6,14 +6,14 @@
 * Course: EGR 226 - 902
 * Date: 02/1/2021
 * Project: lab21part1
-* File: main.c
+* File: lab2part1main.c
 * Description: This program takes an input from the user in ohms and solves to find the
 * resistors color-bands or takes color-bands and converts to resistance.
 *
 **************************************************************************************/
 void getColorBands(char*, char*, char*, char*);
 void calcResistance(char, char, char, char);
-void prompt(void);//Declaring functions
+void prompt(void);//Declaring function protoypes
 int calcResistorColors(int x);
 int getIntBetween ();
 int getinput();
@@ -28,16 +28,16 @@ char c1, c2, c3, c4;
 
 prompt();
 do{
-    printf("Please enter a 1 to convert a resistance value to a color code.\n");
+    printf("Please enter a 1 to convert a resistance value to a color code.\n");//new user prompt
     printf("Please enter a 2 to convert a color code to a resistance value.\n");
     scanf("%d", &userChoice);
 
-    if(userChoice == 1){
+    if(userChoice == 1){//if user chooses 1 then call functions from previous lab
         enteredVal = getIntBetween(); //function calls
         calcResistorColors(enteredVal);
         goodEnter = 1;
     }
-    else if(userChoice == 2){
+    else if(userChoice == 2){//if 2 call new functions and new prompt
     printf("Enter A Character for band 1:");
     scanf(" %c", &c1);
     printf("\nEnter A Character for band 2:");
@@ -53,7 +53,7 @@ do{
     }
 
     else{
-        printf("Error\n");
+        printf("Error\n");//error check
         goodEnter = 0;
     }
 } while(goodEnter != 1);
@@ -92,7 +92,7 @@ while(i == 0){ //while loop to make sure value is between 1 and 99
     pro= scanf("%d", &val);
 
     if (pro == 1){
-    if (val > 0 && val <= 99000000){
+    if (val > 0 && val <= 99000000){//checking value
         i += 1;
     }
     else {
@@ -128,7 +128,7 @@ int calcResistorColors(int enteredVal){
 }
     while (enteredVal >= 100);//do while loop to divide the resistor value by 10 and increment a counter variable
 
-    if (counter == 0){
+    if (counter == 0){//assigning band 3 with 0-7
         b3 =0;
  }
     else if (counter ==1){
@@ -160,7 +160,7 @@ printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
 
  return (enteredVal);}
 
- void getColorBands(char* c1, char* c2, char* c3, char* c4){
+ void getColorBands(char* c1, char* c2, char* c3, char* c4){//new function that passes with pointers
    char color[4] = {c1, c2, c3, c4};
 
    printf("Resistor color code entered: %c, %c, %c, %c\n", c1, c2, c3, c4);
@@ -175,10 +175,10 @@ printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
     double b4;
 
 //band 1
-    if(c1 == 'K'){
+    if(c1 == 'K'){//assigning band 1 with 0-90
         b1 = 0;
     }
-    else if(c1 == 'N'){
+    else if(c1 == 'N'){//going by increments of 10 since it is added to band 2 later
         b1 = 10;
     }
     else if(c1 == 'R'){
@@ -208,7 +208,7 @@ printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
 
 //band 2
 
-    if(c2 == 'K'){
+    if(c2 == 'K'){//assigning band 2 with 0-9
         b2 = 0;
     }
     else if(c2 == 'N'){
@@ -241,7 +241,7 @@ printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
 
 //band 3
 
-     if(c3 == 'K'){
+     if(c3 == 'K'){//assigning band 3 with appropriate multiplier
         b3 = 1;
     }
     else if(c3 == 'N'){
@@ -277,7 +277,7 @@ printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
     }
 
     //band 4
-    if(c4 == 'K'){
+    if(c4 == 'K'){//assigning band 4 with appropriate tolerance
         b4 = 1;
     }
     else if(c4 == 'N'){
@@ -305,9 +305,9 @@ printf(" %s-%s-%s", colors[b1], colors[b2], colors[b3]); //final printf
         b4 = 0;
     }
 
-    total = ((b1+b2)*b3);
+    total = ((b1+b2)*b3);//adding band 1 and 2 then multiplying by the multiplier
 
-    printf("This resistor is [%d]Ohms with a +/-%g%% tolerance", total, b4);
+    printf("This resistor is [%d]Ohms with a +/-%g%% tolerance.", total, b4);//final print
 
 
 return (0);
