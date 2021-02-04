@@ -143,9 +143,9 @@ void print_book(book entered_array[], int enter){
     int i;
 
     for(i = 0; i < enter; i++){//loop that prints title, author, ISBN, page, and year published in that order
-        printf("Title: %s\n", entered_array[i].title);//title print
-        printf("Author: %s\n", entered_array[i].author_name);//author print
-        printf("ISBN: %s\n", entered_array[i].ISBN);//ISBN print
+        printf("|Title: %s\n", entered_array[i].title);//title print
+        printf("|Author: %s\n", entered_array[i].author_name);//author print
+        printf("|ISBN: %s\n", entered_array[i].ISBN);//ISBN print
 
         if(entered_array[i].pages == -1){
             printf("Pages: N/A\n");//used in case pages are N/A
