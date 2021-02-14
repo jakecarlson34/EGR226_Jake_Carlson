@@ -1,8 +1,8 @@
 
 **** Build of configuration Debug for project lab3part3 ****
 
-"C:\\ti\\ccs930\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+/Applications/ti/ccs930/ccs/utils/bin/gmake -k -j 3 all -O 
  
-gmake[1]: 'lab3part3.out' is up to date.
+main.d:4: *** target pattern contains no '%'.  Stop.
 
 **** Build Finished ****

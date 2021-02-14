@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_144" class="java.beans.XMLDecoder">
+<java version="1.8.0_112" class="java.beans.XMLDecoder">
  <object class="com.ti.dvt.datamodel.solution.SolutionManager$PersistState" id="SolutionManager$PersistState0">
   <void class="com.ti.dvt.datamodel.solution.SolutionManager$PersistState" method="getField">
    <string>defaultSolution</string>
    <void method="set">
     <object idref="SolutionManager$PersistState0"/>
-    <string>W:\EGR226\EGR226_Jake_Carlson\dvt\AnalysisSolutionsTemp\AnalysisSolution1612400690203\null</string>
+    <string>/Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/dvt/AnalysisSolutionsTemp/AnalysisSolution1613318336502/null</string>
    </void>
   </void>
  </object>
@@ -14,10 +14,10 @@
  <void id="ArrayList0" method="get">
   <object idref="SolutionManager$PersistState0"/>
   <void method="add">
-   <string>C:\ti\ccs930\ccs\ccs_base\dvt_4.1.0.201911261206\CodeGen\solutions\CodeGenCoverage</string>
+   <string>/Applications/ti/ccs930/ccs/ccs_base/dvt_4.1.0.201911261206/CodeGen/solutions/CodeGenCoverage</string>
   </void>
   <void method="add">
-   <string>W:\EGR226\EGR226_Jake_Carlson\dvt\AnalysisSolutionsTemp\AnalysisSolution1612400690203\null</string>
+   <string>/Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/dvt/AnalysisSolutionsTemp/AnalysisSolution1613318336502/null</string>
   </void>
  </void>
 </void>

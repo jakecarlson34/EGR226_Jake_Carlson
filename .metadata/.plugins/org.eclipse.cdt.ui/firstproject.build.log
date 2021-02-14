@@ -1,8 +1,8 @@
 
 **** Build of configuration Debug for project firstproject ****
 
-"C:\\ti\\ccs930\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+/Applications/ti/ccs930/ccs/utils/bin/gmake -k -j 3 all -O 
  
-gmake[1]: 'firstproject.out' is up to date.
+main.d:4: *** target pattern contains no '%'.  Stop.
 
 **** Build Finished ****
