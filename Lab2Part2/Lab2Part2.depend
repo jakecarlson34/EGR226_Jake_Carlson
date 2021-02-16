@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1612317090 source:w:\egr226\egr226_jake_carlson\lab2part2\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<ctype.h>
-
