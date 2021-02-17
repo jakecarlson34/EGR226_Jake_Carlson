@@ -96,16 +96,15 @@ void main(void)
 }
 
 uint8_t debounce(){
-    uint8_t pinVal = 0;//making variable low
+    static uint8_t pinVal = 0;//variable for button value
 
-        if((P1->IN & 2) == 0){ //checking if button is pushed
-            _delay_cycles(30000);//pausing for 10 milliseconds
+    pinVal = (pinVal<<1) | ((P1->IN & 2)/ 2) | 0xf800;
+    __delay_cycles(30000);//delaying for debounce
 
-            if((P1->IN & 2))//checking if button still pushed
-                pinVal = 1;
-        }
+    if(pinVal == 0xfc00)
+    return 1;//returning 1 if button value is 0xfc00
 
-        return pinVal; //returning 0 if not pushed and 1 if pushed
+    return 0;//returning 0  if not
 }
 int delay(){
     int i = 0;
