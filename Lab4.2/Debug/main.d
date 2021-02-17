@@ -17,6 +17,11 @@ main.obj: /Applications/ti/ccs930/ccs/ccs_base/arm/include/CMSIS/core_cm4.h
 main.obj: /Applications/ti/ccs930/ccs/ccs_base/arm/include/CMSIS/cmsis_compiler.h
 main.obj: /Applications/ti/ccs930/ccs/ccs_base/arm/include/CMSIS/cmsis_ccs.h
 main.obj: /Applications/ti/ccs930/ccs/ccs_base/arm/include/system_msp432p401r.h
+main.obj: /Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdlib.h
+main.obj: /Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/_ti_config.h
+main.obj: /Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/linkage.h
+main.obj: /Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdio.h
+main.obj: /Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdarg.h
 
 ../main.c: 
 /Applications/ti/ccs930/ccs/ccs_base/arm/include/msp.h: 
@@ -35,3 +40,8 @@ main.obj: /Applications/ti/ccs930/ccs/ccs_base/arm/include/system_msp432p401r.h
 /Applications/ti/ccs930/ccs/ccs_base/arm/include/CMSIS/cmsis_compiler.h: 
 /Applications/ti/ccs930/ccs/ccs_base/arm/include/CMSIS/cmsis_ccs.h: 
 /Applications/ti/ccs930/ccs/ccs_base/arm/include/system_msp432p401r.h: 
+/Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdlib.h: 
+/Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/_ti_config.h: 
+/Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/linkage.h: 
+/Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdio.h: 
+/Applications/ti/ccs930/ccs/tools/compiler/ti-cgt-arm_18.12.4.LTS/include/stdarg.h: 

@@ -51,7 +51,7 @@ void main(void)
 
 
            while(1){
-               if(debounce())
+               if(debounce()){
 
                    if((i==0) && (j==0)){
                     P2->OUT |= 1;// Toggle LED P1
@@ -77,7 +77,7 @@ void main(void)
                       P2->OUT &= ~4; //blue off
                        i=1;
 
-
+                   }
 
                    }
 }

@@ -1,0 +1,96 @@
+/**************************************************************************************
+* Author: Jake Carlson
+* Course: EGR 226 - 902
+* Date: 02/14/2021
+* Project: lab04part2
+* File: main.c
+* Description: This program uses the button on the MSP432 and toggles through the Red,
+* Green, and Blue LED's using a 1 second delay.
+*
+**************************************************************************************/
+
+
+
+#include "msp.h"
+
+
+/**
+ * main.c
+ */
+
+uint8_t debounce(void);
+
+
+void main(void)
+{
+    WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
+
+   // int i = 0;
+   // int j = 0;
+
+
+    P1->SEL1 &= ~2;
+    P1->SEL0 &= ~2;
+    P1->DIR &= ~2;
+    P1->REN |= 2;
+    P1->OUT |= 2;
+
+    P2->SEL1 &= ~1;
+    P2->SEL0 &= ~1;
+    P2->DIR |= 1;
+    P2->OUT &= ~1;
+
+    P2->SEL1 &= ~2;
+    P2->SEL0 &= ~2;
+    P2->DIR |= 2;
+    P2->OUT &= ~2;
+
+    P2->SEL1 &= ~4;
+    P2->SEL0 &= ~4;
+    P2->DIR |= 4;
+    P2->OUT &= ~4;
+
+
+
+           while(1){
+              // if(debounce()){
+
+                   if((P1->IN & 2)== 0){
+                      P2->OUT |= 1;//turn on red LED when button is pressed
+                   _delay_cycles(2000000);
+                      P2->OUT &= ~1;
+                   }
+                      else if (((P1->IN & 2)== 1) && (P2->OUT |= 1)){
+                          P2->OUT |= 1;
+                          P2->OUT &= ~2;
+                          P2->OUT &= ~4;
+                      }
+                      else if((P1->IN & 2)== 0){
+                          P2->OUT |= 2;
+                          _delay_cycles(2000000);
+                          P2->OUT &= ~2;
+                      }
+                      else if (((P1->IN & 2)== 1) && (P2->OUT |= 2)){
+                          P2->OUT |= 2;
+                          P2->OUT &= ~1;
+
+}
+           }
+}
+
+uint8_t debounce(void){
+
+    uint8_t pinVal = 0;//making variable low
+
+    if((P1->IN & 2) == 0){ //checking if button is pushed
+        _delay_cycles(30000);//pausing for 10 milliseconds
+
+        if((P1->IN & 2))//checking if button still pushed
+            pinVal = 1;
+    }
+
+    return pinVal; //returning 0 if not pushed and 1 if pushed
+
+
+}
+
