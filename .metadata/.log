@@ -8741,3 +8741,37 @@ java.lang.Exception: Project 'Lab4' is not open.
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:656)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:592)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1498)
+!SESSION 2021-02-17 12:54:53.012 -----------------------------------------------
+eclipse.buildId=4.8.0.I20180611-0500
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/jakecarlson/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/jakecarlson/.eclipse_keyring
+
+!ENTRY com.ti.common.core 1 0 2021-02-17 12:54:56.682
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 1 0 2021-02-17 12:54:56.683
+!MESSAGE debugServerDir=/Applications/ti/ccs930/ccs/ccs_base/DebugServer
+
+!ENTRY org.eclipse.core.net 1 0 2021-02-17 12:54:58.204
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-17 12:55:05.328
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-17 12:55:05.336
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2021-02-17 12:55:05.336
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.ti.ccstudio.ui 1 0 2021-02-17 12:55:05.461
+!MESSAGE CCS IDE session started!
+	CCS build: 9.3.0.00012
+	CCS location: /Applications/ti/ccs930/ccs
+	Workspace location: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson
+
+!ENTRY com.ti.ccstudio.project.ui.webcontent 1 0 2021-02-17 12:55:05.970
+!MESSAGE CCS HTTP adapter started! [ccs.port:49914] - Open 'http://localhost:49914/ide' in web browser to see listing of available APIs...
