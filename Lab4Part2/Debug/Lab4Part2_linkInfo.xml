@@ -2,7 +2,7 @@
 <link_info>
    <banner>TI ARM Linker Unix v18.12.4.LTS</banner>
    <copyright>Copyright (c) 1996-2018 Texas Instruments Incorporated</copyright>
-   <link_time>0x602d61fe</link_time>
+   <link_time>0x602d9bb8</link_time>
    <link_errors>0x0</link_errors>
    <output_file>Lab4Part2.out</output_file>
    <entry_point>
@@ -403,7 +403,7 @@
          <size>0x1a8</size>
          <input_file_ref idref="fl-c0"/>
       </object_component>
-      <object_component id="oc-37">
+      <object_component id="oc-35">
          <name>.debug_info</name>
          <load_address>0x6cfd</load_address>
          <run_address>0x6cfd</run_address>
@@ -647,7 +647,7 @@
          <size>0x45</size>
          <input_file_ref idref="fl-c0"/>
       </object_component>
-      <object_component id="oc-35">
+      <object_component id="oc-38">
          <name>.debug_line</name>
          <load_address>0xa0e</load_address>
          <run_address>0xa0e</run_address>
@@ -1262,7 +1262,7 @@
          <size>0x26</size>
          <input_file_ref idref="fl-c0"/>
       </object_component>
-      <object_component id="oc-38">
+      <object_component id="oc-37">
          <name>.debug_pubnames</name>
          <load_address>0x18c</load_address>
          <run_address>0x18c</run_address>
@@ -1583,7 +1583,7 @@
             <object_component_ref idref="oc-6f"/>
             <object_component_ref idref="oc-27"/>
             <object_component_ref idref="oc-53"/>
-            <object_component_ref idref="oc-37"/>
+            <object_component_ref idref="oc-35"/>
             <object_component_ref idref="oc-11e"/>
             <object_component_ref idref="oc-d8"/>
             <object_component_ref idref="oc-151"/>
@@ -1626,7 +1626,7 @@
             <object_component_ref idref="oc-72"/>
             <object_component_ref idref="oc-6e"/>
             <object_component_ref idref="oc-56"/>
-            <object_component_ref idref="oc-35"/>
+            <object_component_ref idref="oc-38"/>
             <object_component_ref idref="oc-150"/>
             <object_component_ref idref="oc-db"/>
             <object_component_ref idref="oc-154"/>
@@ -1754,7 +1754,7 @@
             <object_component_ref idref="oc-17"/>
             <object_component_ref idref="oc-28"/>
             <object_component_ref idref="oc-55"/>
-            <object_component_ref idref="oc-38"/>
+            <object_component_ref idref="oc-37"/>
             <object_component_ref idref="oc-da"/>
             <object_component_ref idref="oc-8d"/>
             <object_component_ref idref="oc-ce"/>
