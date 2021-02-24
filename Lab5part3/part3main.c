@@ -19,7 +19,7 @@
  */
 
 
-void SysTickdel(uint16_t delay);
+void SysTick_Delay(uint16_t delayms);
 uint16_t debounce();//function prototypes
 
 
@@ -62,7 +62,7 @@ void main(void)
 
         case GREEN: //green LED
           if((P3->IN & BIT2)== 0){//if statement for when the button is pushed and held
-              SysTickdel(1000);//delay 1 second
+              SysTick_Delay(1000);//delay 1 second
               P4->OUT |= BIT3;//green on
 
            i = debounce();
@@ -79,7 +79,7 @@ void main(void)
             }
            }
             else if((P5->IN & BIT5)==0){//checks if second button is held
-               SysTickdel(1000);//delay one second
+                SysTick_Delay(1000);//delay one second
                P4->OUT |= BIT3;//green on
               if(P5->IN & BIT5){
                    i =debounce();
@@ -101,7 +101,7 @@ void main(void)
         case YELLOW: //yellow case
 
                 if((P3->IN & BIT2)== 0){//if statement for when the button is pushed and held
-                   SysTickdel(1000);//delay one second
+                    SysTick_Delay(1000);//delay one second
 
                           P4->OUT |= BIT6;//yellow on
                           i = debounce();
@@ -119,7 +119,7 @@ void main(void)
                       }
                     }
                     else if((P5->IN & BIT5)==0){//check for second button input
-                        SysTickdel(1000);//delay one second
+                        SysTick_Delay(1000);//delay one second
                         P4->OUT |= BIT6;//yellow on
                         if(P5->IN & BIT5){
                             i =debounce();
@@ -139,7 +139,7 @@ void main(void)
 
         case RED: //red case
               if((P3->IN & BIT2)== 0){//if statement for when the button is pushed and held
-                  SysTickdel(1000);
+                  SysTick_Delay(1000);
 
                      P6->OUT |= BIT4;//red on
                      i = debounce();
@@ -157,7 +157,7 @@ void main(void)
                               }
                             }
                             else if((P5->IN & BIT5)==0){//check for second button
-                                SysTickdel(1000);//delay 1 second
+                                SysTick_Delay(1000);//delay 1 second
                                 P6->OUT |= BIT4;//red on
                                 if(P5->IN & BIT5){
                                     i =debounce();
@@ -186,7 +186,7 @@ uint16_t debounce(){
 
         pinVal1 = (pinVal1<<1) | ((P3->IN & BIT2) / BIT2) | 0xf800;
         pinVal2 = (pinVal2<<1) | ((P3->IN & BIT2) / BIT2) | 0xf800;
-        SysTickdel(1000);
+        SysTick_Delay(1000);
 
        if(pinVal1 == 0xfc00){//if button 1 is pushed
            return 1;
@@ -198,7 +198,7 @@ uint16_t debounce(){
 
         return 0; //returning 0 if not pushed and 1 or 2 depending which button is pushed
 }
-void SysTickdel(uint16_t delay){
+void SysTick_Delay(uint16_t delayms){
 
     //systick init
     SysTick->CTRL = 0;
@@ -207,7 +207,7 @@ void SysTickdel(uint16_t delay){
     SysTick->CTRL = 0x00000005;
 
 
-    SysTick->LOAD = (1500 * delay);//using user input for delay
+    SysTick->LOAD = (1500 * delayms);//using user input for delay
     SysTick->VAL = 0;
     while((SysTick->CTRL & 0x00010000)== 0);
     SysTick->CTRL = 0;//turn timer off

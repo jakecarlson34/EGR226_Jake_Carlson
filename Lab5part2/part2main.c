@@ -18,7 +18,7 @@
  */
 
 uint8_t debounce();//function prototypes
-int delay();
+void SysTick_Delay(uint16_t delayms);
 
 void main(void)
 {
@@ -28,7 +28,7 @@ void main(void)
 
     enum states state;
     int i=0;
-    int j = 0;
+
     P3->SEL0 &= ~BIT2;
     P3->SEL1 &= ~BIT2;//setting button to output and choosing pull up resistor
     P3->DIR &= ~BIT2;
@@ -48,46 +48,68 @@ void main(void)
         i = debounce();// using debounce function for the button switch
         switch(state){
 
+
         case GREEN: //first case using green LED
             if((P3->IN & BIT2)== 0){//if statement for when the button is pushed and held
-                P4->OUT |= BIT3;//turn on yellow LED if button is pushed
-                j=delay();//call delay function to delay for desired amount of time
-                if(j==1){ //if statement for when button is released
-                    P4->OUT |= BIT3;//keep yellow LED on when button is released
-                }
-                else{
-                     P4->OUT &= ~BIT3;//turn LED off when switching states
-                     state = YELLOW;
-                }
-            }
+
+              P4->OUT |= BIT3;//green on
+              SysTick_Delay(1000);//delay 1 second
+
+                 i = debounce();
+
+                if(i==1){//normal cycle if button is held
+                  P4->OUT &= ~BIT3; //green off
+                  P4->OUT |= BIT6; //yellow on
+                  state = YELLOW;
+                       }
+                    else{
+                    P4->OUT &= ~BIT3; //green off
+                    P4->OUT |= BIT6; //yellow on
+                    state = YELLOW;
+                        }
+                       }
             break;
 
         case YELLOW://second case using yellow LED
-            if((P3->IN & BIT2)==0){//if statement for when the button is pushed and held
-                P4->OUT |= BIT6;//turn on yellow LED if button is pushed
-                j=delay();//delay for desired amount of time
-                if(j==1){//if statement for when button is released
-                    P4->OUT |= BIT6;//keep yellow LED on when released
-                }
-                else{
-                    P4->OUT &= ~BIT6;//turn LED off when switching states
+            if((P3->IN & BIT2)== 0){//if statement for when the button is pushed and held
+                SysTick_Delay(1000);//delay one second
+
+                    P4->OUT |= BIT6;//yellow on
+                    i = debounce();
+
+                    if(i==1){
+                    P4->OUT &= ~BIT6; //yellow off
+                    P6->OUT |= BIT4; //red on
                     state = RED;
-                }
-            }
+                        }
+
+                    else{
+                    P4->OUT &= ~BIT6; //yellow off
+                    P6->OUT |= BIT4; //red on
+                    state = RED;
+                                  }
+           }
             break;
 
         case RED://third case using blue LED
-                    if((P3->IN & BIT2)==0){//if statement for when the button is pushed and held
-                        P6->OUT |= BIT4;//turn on red LED if button is pushed
-                        j=delay();//delay for desired amount of time
-                        if(j==1){//if statement for when button is released
-                            P6->OUT |= BIT4;//keep red LED on when released
-                        }
-                        else{
-                            P6->OUT &= ~BIT4;//turn LED off when switching states
-                            state = GREEN;
-                        }
-                    }
+            if((P3->IN & BIT2)== 0){//if statement for when the button is pushed and held
+                SysTick_Delay(1000);
+
+              P6->OUT |= BIT4;//red on
+              i = debounce();
+
+                  if(i==1){
+                      P6->OUT &= ~BIT4; //red off
+                      P4->OUT |= BIT3; //Green on
+                    state = GREEN;
+                 }
+
+             else{
+                  P6->OUT &= ~BIT4; //red off
+                  P4->OUT |= BIT3; //green on
+                  state = GREEN;
+            }
+            }
                     break;
 
         }
@@ -108,12 +130,18 @@ uint8_t debounce(){
 
         return pinVal; //returning 0 if not pushed and 1 if pushed
 }
-int delay(){
-    int i = 0;
-    for(i=0; i<=1000; i++){
-        if(P3->IN & BIT2)//for loop to used for 1 second to delay
-            return 1;
-        __delay_cycles(3000);//change this value to change delay time
-    }
-    return 0;
+void SysTick_Delay(uint16_t delayms){
+
+    //systick init
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0x00FFFFFF;
+    SysTick->VAL = 0;
+    SysTick->CTRL = 0x00000005;
+
+
+    SysTick->LOAD = (3000 * delayms);//using user input for delay
+    SysTick->VAL = 0;
+    while((SysTick->CTRL & 0x00010000)== 0);
+    SysTick->CTRL = 0;//turn timer off
 }
+

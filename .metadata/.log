@@ -10721,3 +10721,247 @@ Binding(ALT+COMMAND+L,
 !ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 12:45:50.515
 !MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
 
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 13:37:56.907
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/Lab5part2/Debug/Lab5part2.out Could not open file
+
+
+!ENTRY org.eclipse.egit.core 4 0 2021-02-24 13:39:59.200
+!MESSAGE Ignoring /Lab5part2/Debug failed
+!STACK 0
+java.io.FileNotFoundException: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/.gitignore (Is a directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:417)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$PerDirectoryIgnoreNode.load(WorkingTreeIterator.java:1318)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$RootIgnoreNode.load(WorkingTreeIterator.java:1338)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getIgnoreNode(WorkingTreeIterator.java:755)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1517)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1495)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:737)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:697)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:684)
+	at org.eclipse.jgit.treewalk.FileTreeIterator.createSubtreeIterator(FileTreeIterator.java:212)
+	at org.eclipse.jgit.treewalk.AbstractTreeIterator.createSubtreeIterator(AbstractTreeIterator.java:592)
+	at org.eclipse.jgit.treewalk.TreeWalk.enterSubtree(TreeWalk.java:1300)
+	at org.eclipse.egit.core.RepositoryUtil.canBeAutoIgnored(RepositoryUtil.java:726)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources$1.visit(Activator.java:740)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:64)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:48)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources.resourceChanged(Activator.java:716)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:297)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:287)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:150)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:376)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1499)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1552)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.internalBuildProjects(ProjectBuilder.java:317)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.buildProjects(ProjectBuilder.java:283)
+	at com.ti.ccstudio.debug.launch.CCSLaunchDelegate.buildForLaunch(CCSLaunchDelegate.java:444)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:829)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:717)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 13:40:01.837
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/Lab5part2/Debug/Lab5part2.out Could not open file
+
+
+!ENTRY org.eclipse.egit.core 4 0 2021-02-24 13:40:10.298
+!MESSAGE Ignoring /Lab5part2/Debug failed
+!STACK 0
+java.io.FileNotFoundException: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/.gitignore (Is a directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:417)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$PerDirectoryIgnoreNode.load(WorkingTreeIterator.java:1318)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$RootIgnoreNode.load(WorkingTreeIterator.java:1338)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getIgnoreNode(WorkingTreeIterator.java:755)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1517)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1495)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:737)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:697)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:684)
+	at org.eclipse.jgit.treewalk.FileTreeIterator.createSubtreeIterator(FileTreeIterator.java:212)
+	at org.eclipse.jgit.treewalk.AbstractTreeIterator.createSubtreeIterator(AbstractTreeIterator.java:592)
+	at org.eclipse.jgit.treewalk.TreeWalk.enterSubtree(TreeWalk.java:1300)
+	at org.eclipse.egit.core.RepositoryUtil.canBeAutoIgnored(RepositoryUtil.java:726)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources$1.visit(Activator.java:740)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:64)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:48)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources.resourceChanged(Activator.java:716)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:297)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:287)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:150)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:376)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1499)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1552)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.internalBuildProjects(ProjectBuilder.java:317)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.buildProjects(ProjectBuilder.java:283)
+	at com.ti.ccstudio.debug.launch.CCSLaunchDelegate.buildForLaunch(CCSLaunchDelegate.java:444)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:829)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:717)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 13:47:20.503
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 13:48:19.848
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 13:48:19.870
+!MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 13:50:53.808
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/Lab5part2/Debug/Lab5part2.out Could not open file
+
+
+!ENTRY org.eclipse.egit.core 4 0 2021-02-24 13:52:41.502
+!MESSAGE Ignoring /Lab5part2/Debug failed
+!STACK 0
+java.io.FileNotFoundException: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/.gitignore (Is a directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:417)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$PerDirectoryIgnoreNode.load(WorkingTreeIterator.java:1318)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$RootIgnoreNode.load(WorkingTreeIterator.java:1338)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getIgnoreNode(WorkingTreeIterator.java:755)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1517)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1495)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:737)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:697)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:684)
+	at org.eclipse.jgit.treewalk.FileTreeIterator.createSubtreeIterator(FileTreeIterator.java:212)
+	at org.eclipse.jgit.treewalk.AbstractTreeIterator.createSubtreeIterator(AbstractTreeIterator.java:592)
+	at org.eclipse.jgit.treewalk.TreeWalk.enterSubtree(TreeWalk.java:1300)
+	at org.eclipse.egit.core.RepositoryUtil.canBeAutoIgnored(RepositoryUtil.java:726)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources$1.visit(Activator.java:740)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:64)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:48)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources.resourceChanged(Activator.java:716)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:297)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:287)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:150)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:376)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1499)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1552)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.internalBuildProjects(ProjectBuilder.java:317)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.buildProjects(ProjectBuilder.java:283)
+	at com.ti.ccstudio.debug.launch.CCSLaunchDelegate.buildForLaunch(CCSLaunchDelegate.java:444)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:829)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:717)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:02:04.609
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:02:04.633
+!MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:11:46.469
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:11:46.494
+!MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:15:36.313
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:39:49.238
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 14:39:49.264
+!MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:05:21.640
+!MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/Lab5part2/Debug/Lab5part2.out Could not open file
+
+
+!ENTRY org.eclipse.egit.core 4 0 2021-02-24 15:05:39.059
+!MESSAGE Ignoring /Lab5part2/Debug failed
+!STACK 0
+java.io.FileNotFoundException: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_Carlson/.gitignore (Is a directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.eclipse.jgit.treewalk.FileTreeIterator$FileEntry.openInputStream(FileTreeIterator.java:417)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$PerDirectoryIgnoreNode.load(WorkingTreeIterator.java:1318)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator$RootIgnoreNode.load(WorkingTreeIterator.java:1338)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.getIgnoreNode(WorkingTreeIterator.java:755)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1517)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isDirectoryIgnored(WorkingTreeIterator.java:1495)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:737)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:697)
+	at org.eclipse.jgit.treewalk.WorkingTreeIterator.isEntryIgnored(WorkingTreeIterator.java:684)
+	at org.eclipse.jgit.treewalk.FileTreeIterator.createSubtreeIterator(FileTreeIterator.java:212)
+	at org.eclipse.jgit.treewalk.AbstractTreeIterator.createSubtreeIterator(AbstractTreeIterator.java:592)
+	at org.eclipse.jgit.treewalk.TreeWalk.enterSubtree(TreeWalk.java:1300)
+	at org.eclipse.egit.core.RepositoryUtil.canBeAutoIgnored(RepositoryUtil.java:726)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources$1.visit(Activator.java:740)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:64)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:74)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:48)
+	at org.eclipse.egit.core.Activator$IgnoreDerivedResources.resourceChanged(Activator.java:716)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:297)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:287)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:150)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:376)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1499)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1552)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.internalBuildProjects(ProjectBuilder.java:317)
+	at com.ti.ccstudio.project.core.services.ProjectBuilder.buildProjects(ProjectBuilder.java:283)
+	at com.ti.ccstudio.debug.launch.CCSLaunchDelegate.buildForLaunch(CCSLaunchDelegate.java:444)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:829)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:717)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:60)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:06:13.852
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:06:13.874
+!MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:08:29.514
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:08:29.537
+!MESSAGE DS_ERROR: CORTEX_M4_0: Breakpoint Manager: Remove job failed: Register/memory write failure[22005]
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:20:58.217
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
