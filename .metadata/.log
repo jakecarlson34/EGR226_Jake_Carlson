@@ -10965,3 +10965,11 @@ java.io.FileNotFoundException: /Users/jakecarlson/Documents/GitHub/EGR226_Jake_C
 !ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 15:20:58.217
 !MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
 
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 16:33:03.652
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2021-02-24 16:35:52.214
+!MESSAGE DS_ERROR: CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110. (Emulation package 8.4.0.00006) 
+
