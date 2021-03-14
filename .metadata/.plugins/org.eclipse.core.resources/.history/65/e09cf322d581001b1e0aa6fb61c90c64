@@ -1,0 +1,172 @@
+/**************************************************************************************
+* Author: Jake Carlson
+* Course: EGR 226 - 902
+* Date: 02/28/2021
+* Project: lab07part1
+* File: part1main.c
+* Description: This program blinks the cursor on the LCD screen.
+*
+*
+*
+**************************************************************************************/
+
+
+
+
+#include "msp.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void SysTick_init();
+void SysTick_Delay(uint16_t delayms);
+void delay_micro(uint16_t microsec);
+void LCD_init();
+void pulseEnable();
+void pushNibble(uint8_t nibble);
+void pushByte(uint8_t byte);
+void commandWrite(uint8_t command);
+void dataWrite(uint8_t data);
+void pininit();
+
+
+
+void main(void)
+{
+	WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;		// stop watchdog timer
+
+
+
+
+	 pininit();
+	 SysTick_init();
+	 SysTick_Delay(60);
+
+
+
+	while(1){
+	    int i;
+	    for(i=0; i<1; i++){
+	        LCD_init();
+	    }
+	}
+
+
+}
+
+void LCD_init(){
+
+    P4->OUT &= ~BIT0;
+
+    commandWrite(3);
+    SysTick_Delay(100);
+    commandWrite(3);
+    delay_micro(200);
+    commandWrite(3);
+    SysTick_Delay(100);
+    commandWrite(2);
+
+    delay_micro(100);
+    commandWrite(0x28);
+    delay_micro(100);
+
+    delay_micro(100);
+    commandWrite(0x0F);
+    delay_micro(100);
+    commandWrite(0x01);
+    delay_micro(100);
+    commandWrite(0x06);
+    SysTick_Delay(10);
+
+
+}
+
+void SysTick_init(){//SysTick Initialization
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0x00FFFFFF;
+    SysTick->VAL = 0;
+    SysTick->CTRL = 0x00000005;
+}
+
+void SysTick_Delay(uint16_t delayms){//delay function
+    SysTick->LOAD = ((delayms *3000)-1);
+    SysTick->VAL = 0;
+    while((SysTick->CTRL & 0x00010000)==0);
+
+}
+
+void delay_micro(uint16_t microsec){
+    SysTick->LOAD = ((microsec * 3) - 1);
+    SysTick->VAL = 0;
+    while((SysTick->CTRL & 0x00010000)== 0);
+
+}
+
+void pulseEnable(){
+    P4->OUT |= BIT2;
+    delay_micro(10);
+    P4->OUT &= ~BIT2;
+    delay_micro(10);
+
+}
+
+void pushNibble(uint8_t nibble){
+    P4->OUT &= ~0xF0;
+    P4->OUT |= (nibble & 0x0F) << 4;
+    pulseEnable();
+}
+
+void pushByte(uint8_t byte){
+    uint8_t nibble;
+
+    nibble = (byte & 0xF0) >> 4;
+    pushNibble(nibble);
+    nibble = byte & 0x0F;
+    pushNibble(nibble);
+    delay_micro(100);
+}
+
+void commandWrite(uint8_t command){
+    P4->OUT &= ~BIT0;
+    pushByte(command);
+}
+
+void dataWrite(uint8_t data){
+    P4->OUT |= BIT0;
+    pushByte(data);
+}
+
+void pininit(){
+
+    P4->SEL0 &= ~BIT0;//RS INIT
+    P4->SEL1 &= ~BIT0;
+    P4->DIR |= BIT0;
+    P4->OUT &= ~BIT0;
+
+    P4->SEL0 &= ~BIT2;//E INIT
+    P4->SEL1 &= ~BIT2;
+    P4->DIR |= BIT2;
+    P4->OUT &= ~BIT2;
+
+    P4->SEL0 &= ~BIT4;//DB4 INIT
+    P4->SEL1 &= ~BIT4;
+    P4->DIR |= BIT4;
+    P4->OUT &= ~BIT4;
+
+    P4->SEL0 &= ~BIT5;//DB5 INIT
+    P4->SEL1 &= ~BIT5;
+    P4->DIR |= BIT5;
+    P4->OUT &= ~BIT5;
+
+    P4->SEL0 &= ~BIT6;//DB6 INIT
+    P4->SEL1 &= ~BIT6;
+    P4->DIR |= BIT6;
+    P4->OUT &= ~BIT6;
+
+    P4->SEL0 &= ~BIT7;//DB7 INIT
+    P4->SEL1 &= ~BIT7;
+    P4->DIR |= BIT7;
+    P4->OUT &= ~BIT7;
+
+
+}
