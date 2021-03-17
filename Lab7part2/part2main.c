@@ -3,7 +3,7 @@
 * Course: EGR 226 - 902
 * Date: 02/28/2021
 * Project: lab07part2
-* File: part1main.c
+* File: part2main.c
 * Description: This program prints first/last name and EGR 226 on the LCD screen.
 *
 *
