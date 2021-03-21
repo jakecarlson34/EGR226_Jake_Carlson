@@ -3,7 +3,7 @@
  * Course: EGR 226 - 902
  * Date: 03/17/2021
  * Project: lab08part3
- * File: part2main.c
+ * File: part3main.c
  * Description: This program controls the speed of a DC motor using a keypad for input
  * of duty cycle.
  *
@@ -36,43 +36,40 @@ void main(void)
     P4->DIR &= ~0x70;
 
 
-    int var[3];
-    double dutyCyc;
-    int i, j;
+
+    double dutyCyc, on;
+
+
     SysTick_init();
 
     P2->SEL1 &=~BIT4;
-    P2->SEL0 |= BIT4;
+    P2->SEL0 |= BIT4;//Timer A initialization
     P2->DIR |= BIT4;
 
-    TIMER_A0->CCR[0] = 3000;
-    TIMER_A0->CCTL[1] = 0b0000000001110000 ;
+    TIMER_A0->CCR[0] = 30000;
+    TIMER_A0->CCTL[1] = TIMER_A_CCTLN_OUTMOD_7;//Timer A pulse
     TIMER_A0->CTL = 0x0214;
 
+while(1){
+    pressed = Keypad_Read();
 
-
-    do{
-
-        pressed = Keypad_Read();
-
-        if(pressed) {
-            if((i<3) && (num<=11)){
-                if(num == 11){
-                    num = 0;
-                }
-                if(num==12){
-                    var[i] = num;
-                    i++;
-                    j =1;
-                }
-                dutyCyc = var[0]*100 +var[1]*10 +var[2];
-                dutyCyc = dutyCyc/100;
-
-            }
+    if(pressed){
+        if(num == 11){//when 0 is pressed the duty cycle is 0
+            dutyCyc = 0;
+        }
+        if(num<10){//when any other key is pressed that key is the dutycycle.
+            dutyCyc = num;
         }
 
-    }while(j == 0);
-    TIMER_A0->CCR[1] = (dutyCyc * 3000);
+        on =((dutyCyc/10)*30000);//duty cycle is multiplied by period
+        TIMER_A0->CCR[1] = on;//run DC motor
+
+    }
+
+
+}
+
+
 }
 
 

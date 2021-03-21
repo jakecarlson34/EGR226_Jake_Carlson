@@ -4,8 +4,8 @@
 * Date: 03/17/2021
 * Project: lab08part2
 * File: part2main.c
-* Description: This program controls the speed of a DC motor using Timer A.
-*
+* Description: This program controls the speed of a DC motor using Timer A
+* by modifying duty cycle in the debugger.
 *
 *
 **************************************************************************************/
@@ -31,7 +31,7 @@ void main(void)
     P2->DIR |= BIT4;
 
     TIMER_A0->CCR[0] = 3000;
-    TIMER_A0->CCTL[1] = 0b0000000001110000 ;
+    TIMER_A0->CCTL[1] = 0b0000000001110000 ;//Timer A pulse
     TIMER_A0->CTL = 0x0214;
 
 

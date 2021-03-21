@@ -4,8 +4,7 @@
  * Date: 03/17/2021
  * Project: lab08part1
  * File: part1main.c
- * Description: This program runs a dc motor off of a given duty cycle in CCS.
- *
+ * Description: This program runs a DC motor off of a given duty cycle in CCS.
  *
  *
  **************************************************************************************/
