@@ -2,11 +2,10 @@
  * Author: Jake Carlson
  * Course: EGR 226 - 902
  * Date: 03/17/2021
- * Project: lab08part2
- * File: part2main.c
- * Description: This program controls the speed of a DC motor using Timer A.
- *
- *
+ * Project: lab09part1
+ * File: part1main.c
+ * Description: This program controls the speed of a DC motor using Timer A and 3
+ * buttons.
  *
  **************************************************************************************/
 
@@ -15,16 +14,18 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-void PORT2_IRQ(void);
-void timer(float dutyCyc);
-float dutyCyc =0;
+void SysTick_init();//function prototypes
+void SysTick_Delay(uint16_t delayms);
+uint8_t buttonDebounce();
+
 
 void main(void)
 {
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
 
 
-
+    int i;
+    float dutyCyc = .33;
 
     P5->SEL0 &= ~BIT0;
     P5->SEL1 &= ~BIT0;//button 1
@@ -49,42 +50,71 @@ void main(void)
     P2->DIR |= BIT4;
 
 
+    TIMER_A0->CCR[0] = 30000;//period set
+    TIMER_A0->CCTL[1] = TIMER_A_CCTLN_OUTMOD_7;
+    TIMER_A0->CTL = 0x0214;
 
-
-
-    NVIC->ISER[1] = (1 << ((PORT2_IRQn) & 31));
-    __enable_interrupt();
+    SysTick_init();
 
     while(1){
 
-;
+        TIMER_A0->CCR[1] = dutyCyc * 30000 ;
+        i = buttonDebounce();//sets i to what button is pushed
 
-
-    }
-}
-void PORT2_IRQ(void){
-    if(P2->IFG & BIT5){
-        timer(0);
-        P2->IFG &= ~ BIT5;
-    }
-    if(P2->IFG & BIT6){
-        dutyCyc = (dutyCyc -0.1);
-       timer(dutyCyc);
-       P2->IFG &= ~ BIT6;
-    }
-    if(P2->IFG & BIT7){
-       dutyCyc = (dutyCyc +0.1);
-       timer(dutyCyc);
-       P2->IFG &= ~ BIT7;
+        if(i==1){//first button pushed
+           if(dutyCyc < 1.0){
+                dutyCyc = dutyCyc + .1;//increase duty cycle
+            }
+        }
+        if(i==2){//second button pushed
+          if(dutyCyc > 0.0){
+                dutyCyc = dutyCyc - .1;//decrease duty cycle
+            }
+          if(dutyCyc == 0.0){
+              dutyCyc = 0.0;
+          }
+        }
+        if(i==3){//third button pushed
+            dutyCyc = 0.0;//set duty cycle to 0
         }
 
 
+    }
 }
-void timer(float dutyCyc){
+void SysTick_init(){//SysTick Initialization from previous labs
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0x00FFFFFF;
+    SysTick->VAL = 0;
+    SysTick->CTRL = 0x00000005;
+}
 
-    TIMER_A0->CCR[0] = 3000;
-    TIMER_A0->CCTL[1] = 0b0000000001110000 ;
-    TIMER_A0->CTL = 0x0214;
+void SysTick_Delay(uint16_t delayms){//delay function from previous labs
+    SysTick->LOAD = ((delayms *3000)-1);
+    SysTick->VAL = 0;
+    while((SysTick->CTRL & 0x00010000)==0);
 
-    TIMER_A0->CCR[1] = (dutyCyc * 3000);//multiplying by 1 millisecond
+}
+
+uint8_t buttonDebounce(){//debounce used in previous labs
+    static uint16_t button1 = 0;
+    static uint16_t button2 = 0;
+    static uint16_t button3 = 0;//declaring each button
+
+    button1 = (button1<<1)|((P5IN & BIT0)/BIT0)|0xf800;
+    button2 = (button2<<1)|((P5IN & BIT1)/BIT0)|0xf800;
+    button3 = (button3<<1)|((P5IN & BIT2)/BIT0)|0xf800;
+
+    SysTick_Delay(10);
+
+    if(button1 == 0xfc00){
+        return 1;//return 1 if first button pushed
+    }
+    else if(button2 == 0xfc00){
+            return 2;//return 2 if second button pushed
+        }
+    else if(button3 == 0xfc00){
+            return 3;//return 3 if third button pushed
+        }
+    return 0;
+
 }
