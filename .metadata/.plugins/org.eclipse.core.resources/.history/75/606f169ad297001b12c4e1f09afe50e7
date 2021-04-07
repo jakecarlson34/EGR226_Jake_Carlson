@@ -1,0 +1,25 @@
+#include "msp.h"
+#include <stdio.h>
+
+
+/**
+ * main.c
+ */
+void main(void)
+{
+	WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;		// stop watchdog timer
+
+
+	P2->SEL0 |= BIT4;
+	P2->SEL1 &= ~BIT4;
+	P2->DIR |= BIT4;
+
+	TIMER_A0->CTL = 0b1000010100;
+	TIMER_A0->CCR[0] = 37500-1;
+	TIMER_A0->CCR[1] = 37500*.5-1;
+	TIMER_A0->CCTL[1] = 0b11100000;
+
+	while(1){
+	    ;
+	}
+}

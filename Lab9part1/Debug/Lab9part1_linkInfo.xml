@@ -2,7 +2,7 @@
 <link_info>
    <banner>TI ARM Linker Unix v18.12.4.LTS</banner>
    <copyright>Copyright (c) 1996-2018 Texas Instruments Incorporated</copyright>
-   <link_time>0x60651827</link_time>
+   <link_time>0x606c92b9</link_time>
    <link_errors>0x0</link_errors>
    <output_file>Lab9part1.out</output_file>
    <entry_point>
@@ -1238,7 +1238,7 @@
          <size>0x20</size>
          <input_file_ref idref="fl-bd"/>
       </object_component>
-      <object_component id="oc-cc">
+      <object_component id="oc-cd">
          <name>.debug_aranges</name>
          <load_address>0xa8</load_address>
          <run_address>0xa8</run_address>
@@ -1343,7 +1343,7 @@
          <size>0x23</size>
          <input_file_ref idref="fl-bd"/>
       </object_component>
-      <object_component id="oc-cd">
+      <object_component id="oc-cc">
          <name>.debug_pubnames</name>
          <load_address>0x134</load_address>
          <run_address>0x134</run_address>
@@ -1856,7 +1856,7 @@
             <object_component_ref idref="oc-66"/>
             <object_component_ref idref="oc-a4"/>
             <object_component_ref idref="oc-c7"/>
-            <object_component_ref idref="oc-cc"/>
+            <object_component_ref idref="oc-cd"/>
             <object_component_ref idref="oc-c2"/>
             <object_component_ref idref="oc-1c"/>
             <object_component_ref idref="oc-16"/>
@@ -1879,7 +1879,7 @@
             <object_component_ref idref="oc-116"/>
             <object_component_ref idref="oc-a5"/>
             <object_component_ref idref="oc-c8"/>
-            <object_component_ref idref="oc-cd"/>
+            <object_component_ref idref="oc-cc"/>
             <object_component_ref idref="oc-c3"/>
             <object_component_ref idref="oc-1d"/>
             <object_component_ref idref="oc-17"/>
