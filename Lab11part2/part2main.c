@@ -50,7 +50,8 @@ void main(void)
 
 
     while(1){
-     ;
+   //  printf("Period = %d\n", period);
+    // __delay_cycles(3000000);
 
     }
 }
