@@ -1,11 +1,11 @@
 /**************************************************************************************
  * Author: Jake Carlson
  * Course: EGR 226 - 902
- * Date: 04/1/2021
- * Project: lab10part3
- * File: part3main.c
- * Description: This program uses the LCD to print the current temp and a push button
- * to cycle between Farenheit and Celsius.
+ * Date: 04/23/2021
+ * Project: final project
+ * File: main.c
+ * Description: This program uses the LCD to print menus as the user cycles through
+ * the different functions of the servo, DC motor, and RGB LED.
  *
  **************************************************************************************/
 
@@ -20,7 +20,7 @@
 
 //function prototypes
 uint8_t num, pressed;
-uint8_t Keypad_Read(void);//function prototypes
+uint8_t Keypad_Read(void);
 void keyinit();
 void dcmoto();
 void servodelay(uint16_t Cycle);
@@ -39,22 +39,19 @@ void main(void)
 {
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
 
-    enum states{MAIN, DC, LIGHTS, DOOR, RED, GREEN, BLUE
+    enum states{MAIN, DC, LIGHTS, DOOR, RED, GREEN, BLUE, OPEN, CLOSE
     };
 
     enum states state;
 
-    SysTickInit_NoInterrupts();
-    lcdInit();
-    keyinit();
-    lcdClear();
-    LEDinit();
-    servodelay(5);
+    SysTickInit_NoInterrupts();//SysTick init from library
+    lcdInit();//init for LCD
+    keyinit();//init for pins
+    lcdClear();//clear LCD for first commands
+    servodelay(5);//start with servo closed (door closed)
 
 
     state = MAIN;
-    //stopflag = 0;
-
 
     while(1){
 
@@ -62,166 +59,190 @@ void main(void)
 
         switch(state){
 
-        case MAIN:
+        case MAIN://first menu is the main menu
             lcdSetText("[1] Door", 3 , 0);//function from LCD library
-            lcdSetText("[2] Motor", 3 , 1);
+            lcdSetText("[2] Motor", 3 , 1);//print different options to LCD for users choice
             lcdSetText("[3] Lights", 3 , 2);
 
             if(pressed){
                 SysTick_delay_ms(10);
-                if(num==1){
+                if(num==1){//if 1 is pressed go to door menu
                     lcdClear();
                     state = DOOR;
                 }
-                if(num==2){
+                if(num==2){//if 2 is pressed go to motor menu
                     lcdClear();
                     state = DC;
                 }
-                if(num==3){
+                if(num==3){//if 3 is pressed go to LED menu
                     lcdClear();
                     state = LIGHTS;
                 }
             }
             break;
 
-        case DOOR:
+        case DOOR://Servo door case menu
             lcdSetText("[1] Open Door", 1 , 0);//function from LCD library
-            lcdSetText("[2] Close Door", 1 , 1);
+            lcdSetText("[2] Close Door", 1 , 1);//User options printed to LCD
             lcdSetText("* to go back", 1, 3);
             if(pressed){
                 SysTick_delay_ms(10);
-                if(num==1){
-                    servodelay(11);
-                    P2->OUT &= ~BIT0;
-                    P2->OUT |= BIT1;
+                if(num==1){//if 1 is entered
+                    lcdClear();//clear LCD
+                    servodelay(11);//open the door
+                    P2->OUT &= ~BIT0;//make sure red LED is off
+                    P2->OUT |= BIT1;//turn on green LED
+                    state = OPEN;//go to open door case
                 }
-                if(num==2){
-                    servodelay(5);
-                    P2->OUT &= ~BIT1;
-                    P2->OUT |= BIT0;
+                if(num==2){//if 2 is entered
+                    lcdClear();//clear LCD
+                    servodelay(5);//close door
+                    P2->OUT &= ~BIT1;//make sure green LED is off
+                    P2->OUT |= BIT0;//turn on red LED
+                    state = CLOSE;//go to close door case
                 }
-                if(num==10){
-                    P2->OUT &= ~BIT0;
+                if(num==10){//if * is entered
+                    P2->OUT &= ~BIT0;//turn off both LEDs
                     P2->OUT &= ~BIT1;
-                    servodelay(5);
-                    lcdClear();
-                    state = MAIN;
+                    servodelay(5);//close door
+                    lcdClear();//clear LCD
+                    state = MAIN;//go back to the main menu
                 }
             }
 
             break;
 
+        case OPEN://Open door case
+            lcdSetText("Door Is Open", 1 , 0);//function from LCD library
+            SysTick_delay_ms(3000);//print door is open for 1 second
 
-        case DC:
-            lcdSetText("Motor Speed", 2, 0);
+            lcdClear();//clear LCD
+            state = DOOR;//go back to door menu
+
+
+                break;
+
+        case CLOSE://close door case
+            lcdSetText("Door Is Closed", 1 , 0);//function from LCD library
+            SysTick_delay_ms(3000);//print door is closed for 1 second
+
+            lcdClear();//clear LCD
+            state = DOOR;//go back to door menu
+
+
+            break;
+
+
+        case DC://DC motor menu
+            lcdSetText("Motor Speed", 2, 0);//print options to LCD
             lcdSetText("[0-9]",5, 1);
             lcdSetText("* to go back", 1, 3);
-            dcmoto();
+            dcmoto();//call the motor function
 
             if(pressed){
                 SysTick_delay_ms(10);
-                if(num==10){
-                    lcdClear();
-                    state = MAIN;
+                if(num==10){//if * is pressed
+                    lcdClear();//clear LCD
+                    state = MAIN;//go back to main menu
                 }
             }
             break;
 
-        case LIGHTS:
-            lcdSetText("[1] RED", 4, 0);
+        case LIGHTS://RGB LED menu
+            lcdSetText("[1] RED", 4, 0);//print options to LCD
             lcdSetText("[2] GREEN", 4, 1);
             lcdSetText("[3] BLUE", 4, 2);
             lcdSetText("* to go back", 1, 3);
 
             if(pressed){
                 SysTick_delay_ms(10);
-                if(num==1){
-                    lcdClear();
-                    state = RED;
+                if(num==1){//if 1 is pressed
+                    lcdClear();//clear LCD
+                    state = RED;//go to red state
                 }
-                if(num==2){
-                    lcdClear();
-                    state = GREEN;
+                if(num==2){//if 2 is pressed
+                    lcdClear();//clear LCD
+                    state = GREEN;//go to green state
                 }
-                if(num==3){
-                    lcdClear();
-                    state = BLUE;
+                if(num==3){//if 3 is pressed
+                    lcdClear();//clear LCD
+                    state = BLUE;//go to blue state
                 }
 
-                if(num==10){
-                    lcdClear();
-                    state = MAIN;
+                if(num==10){//if * is pressed
+                    lcdClear();//clear LCD
+                    state = MAIN;//go back to main menu
                 }
             }
             break;
 
-        case RED:
-            lcdSetText("Pick Brightness", 0, 0);
+        case RED://Red LED case
+            lcdSetText("Pick Brightness", 0, 0);//print options to LCD
             lcdSetText("[0-100]",5, 1);
             lcdSetText("* to go back", 1, 3);
             lcdSetText("RED", 7, 2);
-            REDLED();
+            REDLED();//call Red LED function
 
 
             if(pressed){
-                if(num==10){
-                    lcdClear();
-                    P2->OUT &= ~BIT5;
-                    state = LIGHTS;
+                if(num==10){//if * is pressed
+                    lcdClear();//clear LCD
+                    P2->OUT &= ~BIT5;//turn Red LED off
+                    state = LIGHTS;//go back to LED menu
                 }
             }
 
             break;
 
-        case GREEN:
-            lcdSetText("Pick Brightness", 0, 0);
+        case GREEN://green LED case
+            lcdSetText("Pick Brightness", 0, 0);//print options to LCD
             lcdSetText("[0-100]",5, 1);
             lcdSetText("GREEN", 6, 2);
             lcdSetText("* to go back", 1, 3);
-            GREENLED();
+            GREENLED();//call green LED function
 
             if(pressed){
-                if(num==10){
-                    P2->OUT &= ~BIT7;
-                    lcdClear();
-                    state = LIGHTS;
+                if(num==10){//if * is pressed
+                    P2->OUT &= ~BIT7;//turn off Green LED
+                    lcdClear();//clear LCD
+                    state = LIGHTS;//go back to LED menu
                 }
             }
             break;
 
-        case BLUE:
-            lcdSetText("Pick Brightness", 0, 0);
+        case BLUE://blue LED case
+            lcdSetText("Pick Brightness", 0, 0);//print options to LCD
             lcdSetText("[0-100]",5, 1);
             lcdSetText("BLUE", 6, 2);
             lcdSetText("* to go back", 1, 3);
-            BLUELED();
+            BLUELED();//call blue LED function
 
             if(pressed){
-                if(num==10){
-                    P2->OUT &= ~BIT6;
-                    lcdClear();
-                    state = LIGHTS;
+                if(num==10){//if star is pressed
+                    P2->OUT &= ~BIT6;//turn blue LED off
+                    lcdClear();//clear LCD
+                    state = LIGHTS;//go back to light menu
                 }
             }
             break;
 
         }
-        if(stopflag == 1){
-            lcdClear();
-            lcdSetText("EMERGENCY STOP", 1, 1);
-            stopflag = 0;
-            SysTick_delay_ms(2000);
-            lcdClear();
-            state = MAIN;
+        if(stopflag == 1){//if button is pushed
+            lcdClear();//clear LCD
+            lcdSetText("EMERGENCY STOP", 1, 1);//print to LCD
+            stopflag = 0;//reset flag
+            SysTick_delay_ms(2000);//delay
+            lcdClear();//clear LCD
+            state = MAIN;//go back to main menu
         }
 
-        if(rgbFlag == 1){
-            lcdClear();
-            lcdSetText("EMERGENCY STOP", 1, 1);
-            rgbFlag = 0;
-            SysTick_delay_ms(2000);
-            lcdClear();
-            state = MAIN;
+        if(rgbFlag == 1){//if button 2 is pushed
+            lcdClear();//clear LCD
+            lcdSetText("EMERGENCY STOP", 1, 1);//print to LCD
+            rgbFlag = 0;//reset flag
+            SysTick_delay_ms(2000);//delay
+            lcdClear();//clear LCD
+            state = MAIN;//go back to main menu
         }
     }
 
@@ -263,6 +284,10 @@ uint8_t Keypad_Read(void){//function given by Professor Krug
     }
     return 1;
 }
+
+/*This function initializes different pins for
+ * keypad, msp on board LED's, and the two emergency stop buttons.
+ */
 void keyinit(){
 
     P4->SEL0 &= ~0xF;
@@ -275,8 +300,21 @@ void keyinit(){
     P4->SEL1 &= ~0x70;//initialize columns
     P4->DIR &= ~0x70;
 
+    /////////////////////
+
+    P2->SEL0 &= ~BIT0;
+    P2->SEL1 &= ~BIT0;//MSP LED setup
+    P2->DIR |= BIT0;//red
+    P2->OUT &= ~BIT0;
+    P2->SEL0 &= ~BIT1;//green
+    P2->SEL1 &= ~BIT1;
+    P2->DIR |= BIT1;
+    P2->OUT &= ~BIT1;
+
+    //////////////////////
+
     P3->SEL0 &= ~BIT0;
-    P3->SEL1 &= ~BIT0;//button init from previous lab for stop
+    P3->SEL1 &= ~BIT0;//button init for DC motor stop
     P3->DIR &= ~BIT0;
     P3->REN |= BIT0;
     P3->OUT |= BIT0;
@@ -289,12 +327,12 @@ void keyinit(){
     __enable_irq();
 
     P4->SEL0 &= ~BIT7;
-    P4->SEL1 &= ~BIT7;//button init from previous lab for stop
+    P4->SEL1 &= ~BIT7;//button init for RGB stop
     P4->DIR &= ~BIT7;
     P4->REN |= BIT7;
     P4->OUT |= BIT7;
 
-    P4->IES &= ~BIT7;//RGB motor interrupt
+    P4->IES &= ~BIT7;//RGB interrupt
     P4->IE |= BIT7;
     P4->IFG = 0;
 
@@ -303,6 +341,10 @@ void keyinit(){
 
 }
 
+/*This function is from a previous lab that
+ * used a PWM to control a DC motor on pin
+ * 2.4 TA(2.1).
+ */
 void dcmoto(){
     double dutyCyc, on;
 
@@ -328,38 +370,35 @@ void dcmoto(){
 
     }
 }
+
+/*This function takes a delay (cycle) given by the functions in
+ * the door menu to tell the servo to open or close the door.
+ */
 void servodelay(uint16_t Cycle){
 
     P6->SEL1 &=~BIT6;
     P6->SEL0 |= BIT6;//Timer A initialization for servo pin 6.6
     P6->DIR |= BIT6;
 
-    uint16_t period =(20 *3000);
-
-    TIMER_A2->CCR[0] = period;
+    TIMER_A2->CCR[0] = (20*3000);//set period
     TIMER_A2->CCTL[3] = (0x00E0);
     TIMER_A2->CTL = (0x0214);
-    TIMER_A2->CCR[3] = ((Cycle * period)/100);
+    TIMER_A2->CCR[3] = ((Cycle * (20*3000))/100);//run servo
 }
-void LEDinit(){
-    P2->SEL0 &= ~BIT0;
-    P2->SEL1 &= ~BIT0;//MSP LED setup
-    P2->DIR |= BIT0;//red
-    P2->OUT &= ~BIT0;
-    P2->SEL0 &= ~BIT1;//green
-    P2->SEL1 &= ~BIT1;
-    P2->DIR |= BIT1;
-    P2->OUT &= ~BIT1;
-}
+
+/*This function is for the Red LED duty cycle.
+ * it is similar to the DC moto function, but uses
+ * Timer 0.2.
+ */
 void REDLED(){
 
     double dutyCyc, on;
 
     P2->SEL1 &=~BIT5;
-    P2->SEL0 |= BIT5;//Timer A initialization for Dc motor pin 2.4
+    P2->SEL0 |= BIT5;//Timer A initialization for Dc motor pin 2.5
     P2->DIR |= BIT5;
 
-    TIMER_A0->CCR[0] = 30000;
+    TIMER_A0->CCR[0] = 3750;
     TIMER_A0->CCTL[2] = TIMER_A_CCTLN_OUTMOD_7;//Timer A pulse DC
     TIMER_A0->CTL = 0x0214;
 
@@ -372,12 +411,17 @@ void REDLED(){
             dutyCyc = num;
         }
 
-        on =((dutyCyc/10)*30000);//duty cycle is multiplied by period
+        on =((dutyCyc/10)*3000);//duty cycle is multiplied by period
         TIMER_A0->CCR[2] = on;//run DC motor
 
     }
 
 }
+
+/*This function is for the Green LED duty cycle.
+ * it is similar to the DC moto function, but uses
+ * Timer 0.4.
+ */
 void GREENLED(){
 
     double dutyCyc, on;
@@ -386,7 +430,7 @@ void GREENLED(){
     P2->SEL0 |= BIT7;//Timer A initialization for Dc motor pin 2.7
     P2->DIR |= BIT7;
 
-    TIMER_A0->CCR[0] = 30000;
+    TIMER_A0->CCR[0] = 3750;
     TIMER_A0->CCTL[4] = TIMER_A_CCTLN_OUTMOD_7;//Timer A pulse DC
     TIMER_A0->CTL = 0x0214;
 
@@ -399,22 +443,26 @@ void GREENLED(){
             dutyCyc = num;
         }
 
-        on =((dutyCyc/10)*30000);//duty cycle is multiplied by period
+        on =((dutyCyc/10)*3000);//duty cycle is multiplied by period
         TIMER_A0->CCR[4] = on;//run DC motor
 
     }
 
 }
 
+/*This function is for the Blue LED duty cycle.
+ * it is similar to the DC moto function, but uses
+ * Timer 0.3.
+ */
 void BLUELED(){
 
     double dutyCyc, on;
 
     P2->SEL1 &=~BIT6;
-    P2->SEL0 |= BIT6;//Timer A initialization for Dc motor pin 2.7
+    P2->SEL0 |= BIT6;//Timer A initialization for Dc motor pin 2.6
     P2->DIR |= BIT6;
 
-    TIMER_A0->CCR[0] = 30000;
+    TIMER_A0->CCR[0] = 3750;
     TIMER_A0->CCTL[3] = TIMER_A_CCTLN_OUTMOD_7;//Timer A pulse DC
     TIMER_A0->CTL = 0x0214;
 
@@ -427,30 +475,33 @@ void BLUELED(){
             dutyCyc = num;
         }
 
-        on =((dutyCyc/10)*30000);//duty cycle is multiplied by period
+        on =((dutyCyc/10)*3000);//duty cycle is multiplied by period
         TIMER_A0->CCR[3] = on;//run DC motor
 
     }
 }
 
+
+//Dc Motor E STOP interrupt handler
 void PORT3_IRQHandler(){
 
     if((P3->IFG & BIT0)){//if button 1 is pressed
-        TIMER_A0->CCR[1] = 0;
-        stopflag = 1;
+        TIMER_A0->CCR[1] = 0;//turn off motor
+        stopflag = 1;//set flag
     }
 
     P3->IFG = 0;
 
 }
 
+//RGB E STOP interrupt handler
 void PORT4_IRQHandler(){
 
     if((P4->IFG & BIT7)){//if button 1 is pressed
-        TIMER_A0->CCR[2] = 0;
+        TIMER_A0->CCR[2] = 0;//turn off all LED's
         TIMER_A0->CCR[3] = 0;
         TIMER_A0->CCR[4] = 0;
-        rgbFlag = 1;
+        rgbFlag = 1;//set flag
     }
 
     P4->IFG = 0;
