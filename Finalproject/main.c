@@ -253,15 +253,15 @@ uint8_t Keypad_Read(void){//function given by Professor Krug
     uint8_t col, row;
 
     for(col = 0; col<3; col++){
-        P4DIR = 0x00;
-        P4DIR |=BIT(4+col);
-        P4OUT &= ~BIT(4+col);
-        SysTick_delay_ms(10);
-        row = P4IN & 0x0F;
+        P4DIR = 0x00;//columns as inputs
+        P4DIR |=BIT(4+col);//column 3 is an output
+        P4OUT &= ~BIT(4+col);//column 3 low
+        SysTick_delay_ms(10);//delay
+        row = P4IN & 0x0F;//read each row
 
         while(!(P4IN & BIT0)|!(P4IN & BIT1)|!(P4IN & BIT2)|!(P4IN & BIT3));
 
-        if(row != 0x0F){
+        if(row != 0x0F){//if low input then key is pressed
             break;
         }
     }
@@ -271,16 +271,16 @@ uint8_t Keypad_Read(void){//function given by Professor Krug
         return 0;
     }
     if(row == 0x0E){
-        num = col +1;
+        num = col +1;//row 0
     }
     if(row == 0x0D){
-        num = 3 + col +1;
+        num = 3 + col +1;//row 1
     }
     if(row == 0x0B){
-        num = 6+ col +1;
+        num = 6+ col +1;//row 2
     }
     if(row == 0x07){
-        num = 9 + col +1;
+        num = 9 + col +1;//row 3
     }
     return 1;
 }
